@@ -33,6 +33,7 @@ RUN \
 	fix-permissions $CONDA_DIR && \
 	fix-permissions /home/$NB_USER
 
+USER root
 RUN apt-get update && \
 	apt-get install -yq --no-install-recommends \
 		texlive-latex-recommended \
@@ -43,6 +44,15 @@ RUN apt-get update && \
 	&& \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
-	
+USER $NB_UID
+
+RUN pip install \
+	requests \
+	arrow \
+	dateutils \
+	webdavclient3 \
+	webdavclient 
+		
+
 ADD jupyterhub_config.py /home/$NB_USER/.jupyter/
 ADD jupyter_notebook_config.py /home/$NB_USER/.jupyter/
