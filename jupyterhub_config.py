@@ -46,6 +46,8 @@
 
 ## DEPRECATED since version 0.7.2, use Authenticator.admin_users instead.
 #c.JupyterHub.admin_users = set()
+import os
+c.JupyterHub.admin_users = set(os.environ.get("AUTHENTICATOR_ADMIN_WHITELIST", "").split(","))
 
 ## Allow named single-user servers per user
 #c.JupyterHub.allow_named_servers = False
@@ -934,6 +936,8 @@ c.JupyterHub.authenticator_class = GenericOAuthenticator
 #  
 #  If empty, does not perform any additional restriction.
 #c.Authenticator.whitelist = set()
+import os
+c.Authenticator.whitelist = set(os.environ.get("AUTHENTICATOR_USER_WHITELIST", "").split(","))
 
 #------------------------------------------------------------------------------
 # CryptKeeper(SingletonConfigurable) configuration
