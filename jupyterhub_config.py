@@ -447,6 +447,7 @@ c.JupyterHub.authenticator_class = GenericOAuthenticator
 #    - localprocess: jupyterhub.spawner.LocalProcessSpawner
 #    - simple: jupyterhub.spawner.SimpleLocalProcessSpawner
 #c.JupyterHub.spawner_class = 'jupyterhub.spawner.LocalProcessSpawner'
+c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
 
 ## Path to SSL certificate file for the public facing interface of the proxy
 #  
