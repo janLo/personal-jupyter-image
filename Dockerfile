@@ -51,8 +51,10 @@ RUN pip install \
 	arrow \
 	dateutils \
 	webdavclient3 \
-	webdavclient 
+	webdavclient
 		
+RUN pip install --upgrade \
+	git+https://github.com/janLo/oauthenticator@generic-nested-userdata
 
 ADD jupyterhub_config.py /home/$NB_USER/.jupyter/
 ADD jupyter_notebook_config.py /home/$NB_USER/.jupyter/
