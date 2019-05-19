@@ -570,6 +570,7 @@ c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
 #  environment variables. Most, including the default, do not. Consult the
 #  documentation for your spawner to verify!
 #c.Spawner.cmd = ['jupyterhub-singleuser']
+c.Spawner.cmd = ['jupyter-labhub']
 
 ## Maximum number of consecutive failures to allow before shutting down
 #  JupyterHub.
