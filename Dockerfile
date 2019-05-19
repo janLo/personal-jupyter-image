@@ -15,6 +15,8 @@ RUN \
 		&& \
 	pip install \
 		jupyterlab_latex \
+		dockerspawner \
+		git+https://github.com/janLo/oauthenticator@generic-nested-userdata \
                 oauthenticator \
 		cufflinks \
 	&& \
@@ -43,7 +45,10 @@ RUN apt-get update && \
 		texlive-pstricks \
 	&& \
 	apt-get clean && \
-	rm -rf /var/lib/apt/lists/*
+	rm -rf /var/lib/apt/lists/* &&\
+	groupadd docker --gid 131 && \
+	adduser $NB_USER docker
+
 USER $NB_UID
 
 RUN pip install \
@@ -53,8 +58,6 @@ RUN pip install \
 	webdavclient3 \
 	webdavclient
 		
-RUN pip install --upgrade \
-	git+https://github.com/janLo/oauthenticator@generic-nested-userdata
-
 ADD jupyterhub_config.py /home/$NB_USER/.jupyter/
 ADD jupyter_notebook_config.py /home/$NB_USER/.jupyter/
+

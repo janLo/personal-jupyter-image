@@ -254,6 +254,9 @@ c.JupyterHub.authenticator_class = GenericOAuthenticator
 #  
 #  .. versionadded:: 0.8
 #c.JupyterHub.hub_connect_ip = ''
+# The docker instances need access to the Hub, so the default loopback port doesn't work:
+from jupyter_client.localinterfaces import public_ips
+c.JupyterHub.hub_ip = public_ips()[0]
 
 ## DEPRECATED
 #  
@@ -447,7 +450,11 @@ c.JupyterHub.authenticator_class = GenericOAuthenticator
 #    - localprocess: jupyterhub.spawner.LocalProcessSpawner
 #    - simple: jupyterhub.spawner.SimpleLocalProcessSpawner
 #c.JupyterHub.spawner_class = 'jupyterhub.spawner.LocalProcessSpawner'
-c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
+#c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
+c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
+c.DockerSpawner.image = 'janlo/personal-jupyter-image:latest'
+c.DockerSpawner.use_internal_ip = True
+c.DockerSpawner.network_name = "jupyter"
 
 ## Path to SSL certificate file for the public facing interface of the proxy
 #  
@@ -717,7 +724,14 @@ c.Spawner.default_url = '/lab'
 #  
 #  Note that this does *not* prevent users from accessing files outside of this
 #  path! They can do so with many other means.
-c.Spawner.notebook_dir = '/notebooks/{username}'
+notebook_dir = '/notebooks/{username}'
+c.Spawner.notebook_dir = notebook_dir
+c.DockerSpawner.notebook_dir = notebook_dir
+
+# Mount the real user's Docker volume on the host to the notebook user's
+# notebook directory in the container
+volume_src = os.environ.get("USER_VOLUME_SRC", '/home/{username}')
+c.DockerSpawner.volumes = { volume_src: notebook_dir }
 
 ## An HTML form for options a user can specify on launching their server.
 #  
