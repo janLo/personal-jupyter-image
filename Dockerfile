@@ -42,11 +42,11 @@ RUN apt-get update && \
 		texlive-lang-european \
 		texlive-lang-german \
 		texlive-pstricks \
+		openssh-client \
+		tmux \
 	&& \
 	apt-get clean && \
-	rm -rf /var/lib/apt/lists/* &&\
-	groupadd docker --gid 131 && \
-	adduser $NB_USER docker
+	rm -rf /var/lib/apt/lists/* 
 
 USER $NB_UID
 
