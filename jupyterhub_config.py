@@ -724,7 +724,7 @@ c.Spawner.default_url = '/lab'
 #  
 #  Note that this does *not* prevent users from accessing files outside of this
 #  path! They can do so with many other means.
-notebook_dir = '/notebooks/{username}'
+notebook_dir = '/home/jovyan/work'
 c.Spawner.notebook_dir = notebook_dir
 c.DockerSpawner.notebook_dir = notebook_dir
 
