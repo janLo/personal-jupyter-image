@@ -44,6 +44,7 @@ RUN apt-get update && \
 		texlive-pstricks \
 		openssh-client \
 		tmux \
+		vim \
 	&& \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* 
