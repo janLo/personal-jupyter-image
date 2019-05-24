@@ -59,12 +59,12 @@ RUN pip install \
 	webdavclient
 
 RUN ln -s /home/$NB_USER/work/.ssh /home/$NB_USER/.ssh && \
-	/home/$NB_USER/work/.gitconfig /home/$NB_USER/.gitconfig && \
-	/home/$NB_USER/work/.tmux.conf /home/$NB_USER/.tmux.conf && \
-	/home/$NB_USER/work/.tmux-line.conf /home/$NB_USER/.tmux-line.conf && \
-	/home/$NB_USER/work/.gnupg /home/$NB_USER/.gnupg && \
-	/home/$NB_USER/work/.vim /home/$NB_USER/.vim && \
-	/home/$NB_USER/work/.vimrc /home/$NB_USER/.vimrc
+	ln -s /home/$NB_USER/work/.gitconfig /home/$NB_USER/.gitconfig && \
+	ln -s /home/$NB_USER/work/.tmux.conf /home/$NB_USER/.tmux.conf && \
+	ln -s /home/$NB_USER/work/.tmux-line.conf /home/$NB_USER/.tmux-line.conf && \
+	ln -s /home/$NB_USER/work/.gnupg /home/$NB_USER/.gnupg && \
+	ln -s /home/$NB_USER/work/.vim /home/$NB_USER/.vim && \
+	ln -s /home/$NB_USER/work/.vimrc /home/$NB_USER/.vimrc
 		
 ADD jupyterhub_config.py /home/$NB_USER/.jupyter/
 ADD jupyter_notebook_config.py /home/$NB_USER/.jupyter/
