@@ -17,7 +17,6 @@ RUN \
 		jupyterlab_latex \
 		dockerspawner \
 		git+https://github.com/janLo/oauthenticator@generic-nested-userdata \
-                oauthenticator \
 		cufflinks \
 	&& \
 	jupyter labextension install @jupyterlab/latex &&\
