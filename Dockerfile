@@ -11,7 +11,7 @@ RUN \
 	conda install --quiet --yes -c plotly \
 		dash \
 		plotly \
-		jupyterlab-dash=0.1.0a2 \
+		jupyterlab-dash=0.1.0a3 \
 		&& \
 	pip install \
 		jupyterlab_latex \
@@ -22,7 +22,7 @@ RUN \
 	jupyter labextension install @jupyterlab/latex &&\
 	jupyter labextension install ipysheet && \
 	jupyter labextension install @jupyterlab/git && \
-	jupyter labextension install jupyterlab-dash@0.1.0-alpha.2 && \
+	jupyter labextension install jupyterlab-dash@0.1.0-alpha.3 && \
 	jupyter labextension install @jupyterlab/plotly-extension && \
         jupyter labextension install @jupyterlab/hub-extension && \
 	jupyter serverextension enable --py jupyterlab_git && \
