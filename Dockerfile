@@ -11,9 +11,9 @@ RUN \
 	conda install --quiet --yes -c plotly \
 		dash \
 		plotly \
-		jupyterlab-dash=0.1.0a3 \
 		&& \
 	pip install \
+		jupyterlab-dash==0.1.0a3 \
 		jupyterlab_latex \
 		dockerspawner \
 		git+https://github.com/janLo/oauthenticator@generic-nested-userdata \
