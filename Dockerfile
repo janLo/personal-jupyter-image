@@ -16,7 +16,7 @@ RUN \
 		jupyterlab-dash==0.1.0a3 \
 		jupyterlab_latex \
 		dockerspawner \
-		git+https://github.com/janLo/oauthenticator@generic-nested-userdata \
+		oauthenticator \
 		cufflinks \
 	&& \
 	jupyter labextension install @jupyterlab/latex &&\
