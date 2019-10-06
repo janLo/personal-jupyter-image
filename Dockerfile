@@ -18,6 +18,7 @@ RUN \
 		dockerspawner \
 		oauthenticator \
 		cufflinks \
+		algorithmx \
 	&& \
 	jupyter labextension install @jupyterlab/latex &&\
 	jupyter labextension install ipysheet && \
@@ -25,6 +26,9 @@ RUN \
 	jupyter labextension install jupyterlab-dash@0.1.0-alpha.3 && \
 	jupyter labextension install @jupyterlab/plotly-extension && \
         jupyter labextension install @jupyterlab/hub-extension && \
+	jupyter labextension install @telamonian/theme-darcula && \
+	jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
+	jupyter labextension install algorithmx-jupyter && \
 	jupyter serverextension enable --py jupyterlab_git && \
 	conda clean --all -f -y && \
 	npm cache clean --force && \
