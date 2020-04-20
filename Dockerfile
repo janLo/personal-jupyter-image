@@ -7,10 +7,14 @@ RUN \
 		jupyterhub \
 		ipysheet \
 		jupyterlab-git \
+		voila \
 	&& \
 	conda install --quiet --yes -c plotly \
 		dash \
 		plotly \
+		&& \
+	conda install --quiet --yes -c bokeh \
+		jupyter_bokeh \
 		&& \
 	pip install \
 		jupyterlab-dash==0.1.0a3 \
@@ -29,6 +33,9 @@ RUN \
 	jupyter labextension install @telamonian/theme-darcula && \
 	jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
 	jupyter labextension install algorithmx-jupyter && \
+	jupyter labextension install @bokeh/jupyter_bokeh && \
+	jupyter labextension install @pyviz/jupyterlab_pyviz && \
+	jupyter labextension install @jupyterlab/toc && \
 	jupyter serverextension enable --py jupyterlab_git && \
 	conda clean --all -f -y && \
 	npm cache clean --force && \
