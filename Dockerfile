@@ -26,7 +26,7 @@ RUN \
 	jupyter labextension install @jupyterlab/latex &&\
 	jupyter labextension install ipysheet && \
 	jupyter labextension install @jupyterlab/git && \
-	jupyter labextension install @jupyterlab/plotly-extension && \
+	jupyter labextension install jupyterlab-plotly && \
         jupyter labextension install @jupyterlab/hub-extension && \
 	jupyter labextension install @telamonian/theme-darcula && \
 	jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
