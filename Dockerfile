@@ -17,7 +17,6 @@ RUN \
 		jupyter_bokeh \
 		&& \
 	pip install \
-		jupyterlab-dash==0.1.0a3 \
 		jupyterlab_latex \
 		dockerspawner \
 		oauthenticator \
@@ -27,7 +26,6 @@ RUN \
 	jupyter labextension install @jupyterlab/latex &&\
 	jupyter labextension install ipysheet && \
 	jupyter labextension install @jupyterlab/git && \
-	jupyter labextension install jupyterlab-dash@0.1.0-alpha.3 && \
 	jupyter labextension install @jupyterlab/plotly-extension && \
         jupyter labextension install @jupyterlab/hub-extension && \
 	jupyter labextension install @telamonian/theme-darcula && \
@@ -44,6 +42,9 @@ RUN \
 	rm -rf /home/$NB_USER/.node-gyp && \
 	fix-permissions $CONDA_DIR && \
 	fix-permissions /home/$NB_USER
+
+#		jupyterlab-dash==0.1.0a3 \
+#	jupyter labextension install jupyterlab-dash@0.1.0-alpha.3 && \
 
 USER root
 RUN apt-get update && \
