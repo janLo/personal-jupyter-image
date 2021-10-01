@@ -18,7 +18,6 @@ RUN \
 		dockerspawner \
 		oauthenticator \
 		cufflinks \
-		algorithmx \
 	&& \
 	conda clean --all -f -y && \
 	npm cache clean --force && \
