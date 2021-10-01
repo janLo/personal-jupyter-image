@@ -452,7 +452,7 @@ c.JupyterHub.hub_ip = public_ips()[0]
 #c.JupyterHub.spawner_class = 'jupyterhub.spawner.LocalProcessSpawner'
 #c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
 c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
-c.DockerSpawner.image = 'janlo/personal-jupyter-image:latest'
+c.DockerSpawner.image = 'janlo/personal-jupyter-image:gh-action'
 c.DockerSpawner.use_internal_ip = True
 c.DockerSpawner.network_name = "jupyter"
 
