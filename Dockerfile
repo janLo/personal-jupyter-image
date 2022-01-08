@@ -51,7 +51,7 @@ RUN ln -s /home/$NB_USER/work/.ssh /home/$NB_USER/.ssh && \
 	ln -s /home/$NB_USER/work/.tmux-line.conf /home/$NB_USER/.tmux-line.conf && \
 	ln -s /home/$NB_USER/work/.gnupg /home/$NB_USER/.gnupg && \
 	ln -s /home/$NB_USER/work/.vim /home/$NB_USER/.vim && \
-	ln -s /home/$NB_USER/work/.vimrc /home/$NB_USER/.vimrc
+	ln -s /home/$NB_USER/work/.vimrc /home/$NB_USER/.vimrc \
 	ln -s /home/$NB_USER/work/.pandoc /home/$NB_USER/.pandoc
 		
 ADD jupyterhub_config.py /home/$NB_USER/.jupyter/
