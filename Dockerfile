@@ -1,31 +1,6 @@
-FROM jupyter/scipy-notebook
+FROM jupyter/minimal-notebook
 
 MAINTAINER Jan Losinski losinski@wh2.tu-dresden.de
-
-RUN \
-	conda install --quiet --yes -c conda-forge \
-		jupyterhub \
-		jupyterlab-git \
-	&& \
-	conda install --quiet --yes -c \
-		dash \
-		plotly \
-		jupyterlab-dash \
-		ipywidgets \
-		&& \
-	pip install \
-		jupyterlab_latex \
-		dockerspawner \
-		oauthenticator \
-		cufflinks \
-	&& \
-	conda clean --all -f -y && \
-	npm cache clean --force && \
-	rm -rf $CONDA_DIR/share/jupyter/lab/staging && \
-	rm -rf /home/$NB_USER/.cache/yarn && \
-	rm -rf /home/$NB_USER/.node-gyp && \
-	fix-permissions $CONDA_DIR && \
-	fix-permissions /home/$NB_USER
 
 USER root
 RUN apt-get update && \
@@ -36,6 +11,8 @@ RUN apt-get update && \
 		texlive-lang-german \
 		texlive-pstricks \
 		openssh-client \
+		git \
+		pandoc \
 		tmux \
 		vim \
 	&& \
@@ -44,12 +21,29 @@ RUN apt-get update && \
 
 USER $NB_UID
 
-RUN pip install \
-	requests \
-	arrow \
-	dateutils \
-	webdavclient3 \
-	webdavclient
+
+RUN \
+	mamba install --quiet --yes \
+		jupyterlab-git \
+		jupyterlab-latex \
+		&& \
+	pip install --no-cache-dir \
+		jupyterlab_latex \
+		dockerspawner \
+		oauthenticator \
+		cufflinks \
+		requests \
+	        arrow \
+		dateutils \
+	&& \
+	mamba clean --all -f -y && \
+    	npm cache clean --force && \
+    	jupyter notebook --generate-config && \
+    	jupyter lab clean && \
+    	rm -rf "/home/${NB_USER}/.cache/yarn" && \
+    	fix-permissions "${CONDA_DIR}" && \
+    	fix-permissions "/home/${NB_USER}"
+	
 
 RUN ln -s /home/$NB_USER/work/.ssh /home/$NB_USER/.ssh && \
 	ln -s /home/$NB_USER/work/.gitconfig /home/$NB_USER/.gitconfig && \
@@ -58,6 +52,7 @@ RUN ln -s /home/$NB_USER/work/.ssh /home/$NB_USER/.ssh && \
 	ln -s /home/$NB_USER/work/.gnupg /home/$NB_USER/.gnupg && \
 	ln -s /home/$NB_USER/work/.vim /home/$NB_USER/.vim && \
 	ln -s /home/$NB_USER/work/.vimrc /home/$NB_USER/.vimrc
+	ln -s /home/$NB_USER/work/.pandoc /home/$NB_USER/.pandoc
 		
 ADD jupyterhub_config.py /home/$NB_USER/.jupyter/
 ADD jupyter_notebook_config.py /home/$NB_USER/.jupyter/
